@@ -9,7 +9,12 @@ jobs:
    runs-on: ubuntu-22.04
    steps:
       - uses: actions/checkout@v4
-      
+      - name: Accept Android SDK licences
+        run: yes | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --licences
+
+      - name: Install Android SDK Build-Tools
+        run: $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager "build-tools;37.0.0"
+        
       - name: Set up Python 3.10
         uses: actions/setup-python@v5
         with:
